@@ -7,12 +7,11 @@
 #include "player.h"
 #include "raycaster.h"
 
-#define bg_1 CLITERAL(Color){180, 180, 180, 255}
 
 int main()
 {
     SetConfigFlags(FLAG_WINDOW_HIGHDPI);
-    InitWindow(700, 700, "Raycaster");
+    InitWindow(1100, 750, "Raycaster");
     Player player1;
     player1.pos = (Vector2){100.0f, 100.0f};
     player1.dir = (Vector2){1.0f, 0.0f};
@@ -34,7 +33,7 @@ int main()
         if (IsKeyDown(KEY_RIGHT))
             player1 = movement_clock_wise(player1, dt);
         BeginDrawing();
-        ClearBackground(bg_1);
+        ClearBackground(WHITE);
         DrawMap();
         draw_player(player1.pos, player1.dir);
         EndDrawing();
