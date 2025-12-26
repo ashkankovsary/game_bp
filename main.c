@@ -16,6 +16,7 @@ int main()
     {
         BeginDrawing();
         ClearBackground(bg_1);
+        DrawMap();
         EndDrawing();
     }
     CloseWindow();
