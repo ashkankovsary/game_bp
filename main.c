@@ -16,6 +16,7 @@ int main()
     Player player1;
     player1.pos = (Vector2){100.0f, 100.0f};
     player1.dir = (Vector2){1.0f, 0.0f};
+    player1.plane = (Vector2){0.0f, 0.66f};
     SetTargetFPS(60);
     while (!WindowShouldClose())
     {
@@ -28,6 +29,10 @@ int main()
             player1 = movement_right(player1, dt);
         if (IsKeyDown(KEY_A))
             player1 = movement_left(player1, dt);
+        if (IsKeyDown(KEY_LEFT))
+            player1 = movement_counterclock_wise(player1, dt);
+        if (IsKeyDown(KEY_RIGHT))
+            player1 = movement_clock_wise(player1, dt);
         BeginDrawing();
         ClearBackground(bg_1);
         DrawMap();
