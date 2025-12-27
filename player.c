@@ -4,39 +4,50 @@
 #include <stdbool.h>
 #include "raylib.h"
 #include "player.h"
+#include "map.h"
 
 #define player_size 7.0f
 #define MOVE_SPEED 90.0f
 #define ROT_SPEED 5.0f
+#define TILE_SIZE 35
 
 void draw_player(Vector2 player_pos, Vector2 player_dir)
 {
     DrawCircleV(player_pos, player_size, RED);
     DrawLineV(player_pos, (Vector2){player_pos.x + player_dir.x * 20, player_pos.y + player_dir.y * 20}, BLUE);
 }
+Player check_wall_sliding(Player player1, float new_x, float new_y){
+    int tileX = (int)((new_x - 30) / TILE_SIZE);
+    int tileY = (int)((new_y - 30) / TILE_SIZE);
+    if(world_map[(int)((player1.pos.y - 30) / TILE_SIZE)][tileX] == 0)
+        player1.pos.x = new_x;
+    if(world_map[tileY][(int)((player1.pos.x - 30) / TILE_SIZE)] == 0)
+        player1.pos.y = new_y;
+    return player1;
+}
 Player movement_forward(Player player1, float dt)
 {
-    player1.pos.x += player1.dir.x * MOVE_SPEED * dt;
-    player1.pos.y += player1.dir.y * MOVE_SPEED * dt;
-    return player1;
+    float new_x = player1.pos.x + player1.dir.x * MOVE_SPEED * dt;
+    float new_y = player1.pos.y + player1.dir.y * MOVE_SPEED * dt;
+    return check_wall_sliding(player1, new_x, new_y);
 }
 Player movement_backward(Player player1, float dt)
 {
-    player1.pos.x -= player1.dir.x * MOVE_SPEED * dt;
-    player1.pos.y -= player1.dir.y * MOVE_SPEED * dt;
-    return player1;
+    float new_x = player1.pos.x - player1.dir.x * MOVE_SPEED * dt;
+    float new_y = player1.pos.y - player1.dir.y * MOVE_SPEED * dt;
+    return check_wall_sliding(player1, new_x, new_y);
 }
 Player movement_right(Player player1, float dt)
 {
-    player1.pos.x -= player1.dir.y * MOVE_SPEED * dt * 0.8;
-    player1.pos.y += player1.dir.x * MOVE_SPEED * dt * 0.8;
-    return player1;
+    float new_x = player1.pos.x - player1.dir.y * MOVE_SPEED * dt * 0.8;
+    float new_y = player1.pos.y + player1.dir.x * MOVE_SPEED * dt * 0.8;
+    return check_wall_sliding(player1, new_x, new_y);
 }
 Player movement_left(Player player1, float dt)
 {
-    player1.pos.x += player1.dir.y * MOVE_SPEED * dt * 0.8;
-    player1.pos.y -= player1.dir.x * MOVE_SPEED * dt * 0.8;
-    return player1;
+    float new_x = player1.pos.x + player1.dir.y * MOVE_SPEED * dt * 0.8;
+    float new_y = player1.pos.y - player1.dir.x * MOVE_SPEED * dt * 0.8;
+    return check_wall_sliding(player1, new_x, new_y);
 }
 Player movement_counterclock_wise(Player player1, float dt)
 {
