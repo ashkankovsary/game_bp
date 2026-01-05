@@ -3,13 +3,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "raylib.h"
-#include "player.h"
 #include "map.h"
-
-#define player_size 7.0f
-#define MOVE_SPEED 90.0f
-#define ROT_SPEED 5.0f
-#define TILE_SIZE 35
+#include "player.h"
+#include "raycaster.h"
 
 void draw_player(Vector2 player_pos, Vector2 player_dir)
 {
@@ -17,11 +13,11 @@ void draw_player(Vector2 player_pos, Vector2 player_dir)
     DrawLineV(player_pos, (Vector2){player_pos.x + player_dir.x * 20, player_pos.y + player_dir.y * 20}, BLUE);
 }
 Player check_wall_sliding(Player player1, float new_x, float new_y){
-    int tileX = (int)((new_x - 30) / TILE_SIZE);
-    int tileY = (int)((new_y - 30) / TILE_SIZE);
-    if(world_map[(int)((player1.pos.y - 30) / TILE_SIZE)][tileX] == 0)
+    int tileX = (int)((new_x - space) / TILE_SIZE);
+    int tileY = (int)((new_y - space) / TILE_SIZE);
+    if(world_map[(int)((player1.pos.y - space) / TILE_SIZE)][tileX] == 0)
         player1.pos.x = new_x;
-    if(world_map[tileY][(int)((player1.pos.x - 30) / TILE_SIZE)] == 0)
+    if(world_map[tileY][(int)((player1.pos.x - space) / TILE_SIZE)] == 0)
         player1.pos.y = new_y;
     return player1;
 }

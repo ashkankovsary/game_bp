@@ -7,11 +7,10 @@
 #include "player.h"
 #include "raycaster.h"
 
-
 int main()
 {
     SetConfigFlags(FLAG_WINDOW_HIGHDPI);
-    InitWindow(1100, 750, "Raycaster");
+    InitWindow(w_page, h_page, "Raycaster");
     Player player1;
     player1.pos = (Vector2){100.0f, 100.0f};
     player1.dir = (Vector2){1.0f, 0.0f};

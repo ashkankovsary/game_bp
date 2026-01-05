@@ -3,12 +3,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "raylib.h"
-
-#define map_w 20
-#define map_h 20
-#define TILE_SIZE 35
-#define bg_1 CLITERAL(Color){180, 180, 180, 255}
-#define map_line_color CLITERAL(Color){ 120, 120, 120, 255 }
+#include "map.h"
+#include "player.h"
+#include "raycaster.h"
 
 int world_map[map_h][map_w] = 
 {
@@ -42,11 +39,11 @@ void write_text_map(char *text, int posX, int posY, int fontSize, Color color)
 void DrawLines(){
     for (int i = 0; i <= map_h; i++)
     {
-        DrawLine(30, i*TILE_SIZE + 30, TILE_SIZE*map_w + 30, i*TILE_SIZE + 30,map_line_color);
+        DrawLine(space, i*TILE_SIZE + space, TILE_SIZE*map_w + space, i*TILE_SIZE + space,map_line_color);
     }
     for (int i = 0; i <= map_w; i++)
     {
-        DrawLine(i*TILE_SIZE + 30, 30, i*TILE_SIZE + 30, TILE_SIZE*map_w + 30,map_line_color);
+        DrawLine(i*TILE_SIZE + space, space, i*TILE_SIZE + space, TILE_SIZE*map_w + space,map_line_color);
     }
 }
 
@@ -58,11 +55,11 @@ void DrawMap()
         {
             if (world_map[i][j] == 1)
             {
-                DrawRectangle(j * TILE_SIZE + 30, i * TILE_SIZE + 30, TILE_SIZE, TILE_SIZE, DARKGRAY);
+                DrawRectangle(j * TILE_SIZE + space, i * TILE_SIZE + space, TILE_SIZE, TILE_SIZE, DARKGRAY);
             }
             else
             {
-                DrawRectangle(j * TILE_SIZE + 30, i * TILE_SIZE + 30, TILE_SIZE, TILE_SIZE, LIGHTGRAY);
+                DrawRectangle(j * TILE_SIZE + space, i * TILE_SIZE + space, TILE_SIZE, TILE_SIZE, LIGHTGRAY);
             }
         }
     }
