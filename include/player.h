@@ -2,9 +2,18 @@
 #define PLAYER_H
 #include "raylib.h"
 
-#define player_size 7.0f
 #define MOVE_SPEED 90.0f
 #define ROT_SPEED 5.0f
+
+// map value
+#define player_size 7.0f
+#define player_color CLITERAL(Color){ 230, 41, 55, 255}
+#define player_dir_color CLITERAL(Color){ 0, 121, 241, 255}
+
+// mini map value
+#define mini_player_size 2.5f
+#define mini_player_color CLITERAL(Color){ 230, 41, 55, 180}
+#define mini_player_dir_color CLITERAL(Color){ 0, 121, 241, 180}
 
 typedef struct
 {
@@ -13,13 +22,14 @@ typedef struct
     Vector2 plane;
 } Player;
 
-void draw_player(Vector2 player_pos, Vector2 player_dir);
-Player movement_forward(Player player1, float dt);
-Player movement_backward(Player player1, float dt);
-Player movement_right(Player player1, float dt);
-Player movement_left(Player player1, float dt);
-Player movement_counterclock_wise(Player player1, float dt);
-Player movement_clock_wise(Player player1, float dt);
-Player check_wall_sliding(Player player1, float new_x, float new_y);
+void DrawPlayer(Player player1);
+void DrawMiniPlayer(Player player1);
+Player MovementForward(Player player1, float dt);
+Player MovementBackward(Player player1, float dt);
+Player MovementRight(Player player1, float dt);
+Player MovementLeft(Player player1, float dt);
+Player MovementCounterclockWise(Player player1, float dt);
+Player MovementClockWise(Player player1, float dt);
+Player CheckWallSliding(Player player1, float new_x, float new_y);
 
 #endif
