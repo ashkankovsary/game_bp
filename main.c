@@ -33,8 +33,7 @@ int main()
             player1 = movement_clock_wise(player1, dt);
         BeginDrawing();
         ClearBackground(WHITE);
-        DrawMap();
-        draw_player(player1.pos, player1.dir);
+        raycasting(player1);
         EndDrawing();
     }
     CloseWindow();
