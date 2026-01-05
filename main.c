@@ -20,20 +20,22 @@ int main()
     {
         float dt = GetFrameTime();
         if (IsKeyDown(KEY_W))
-            player1 = movement_forward(player1, dt);
+            player1 = MovementForward(player1, dt);
         if (IsKeyDown(KEY_S))
-            player1 = movement_backward(player1, dt);
+            player1 = MovementBackward(player1, dt);
         if (IsKeyDown(KEY_D))
-            player1 = movement_right(player1, dt);
+            player1 = MovementRight(player1, dt);
         if (IsKeyDown(KEY_A))
-            player1 = movement_left(player1, dt);
+            player1 = MovementLeft(player1, dt);
         if (IsKeyDown(KEY_LEFT))
-            player1 = movement_counterclock_wise(player1, dt);
+            player1 = MovementCounterclockWise(player1, dt);
         if (IsKeyDown(KEY_RIGHT))
-            player1 = movement_clock_wise(player1, dt);
+            player1 = MovementClockWise(player1, dt);
         BeginDrawing();
         ClearBackground(WHITE);
-        raycasting(player1);
+        Raycasting(player1);
+        DrawMap(mini_tile_size, mini_map_offset_w, mini_map_offset_h, mini_wall_color, mini_bg_map, mini_map_line_color);
+        DrawMiniPlayer(player1);
         EndDrawing();
     }
     CloseWindow();

@@ -13,7 +13,7 @@ float cameraX, distance, lineHeight, drawStart;
 intarray2 map, step;
 Vector2 raydir, deltadiset, sidedist;
 
-void raycasting(Player player1)
+void Raycasting(Player player1)
 {
     for (int x = 0; x < w_page; x++)
     {
