@@ -53,15 +53,36 @@ void DrawMap(int tile_size, int offset_w, int offset_h, Color wallcolor, Color b
     {
         for (int j = 0; j < map_w; j++)
         {
-            if (world_map[i][j] == 1)
+            if (world_map[i][j] == ROCKY_WALL)
             {
                 DrawRectangle(j * tile_size + offset_w, i * tile_size + offset_h, tile_size, tile_size, wallcolor);
             }
-            else
+            else if(world_map[i][j] == FREE_SPACE)
             {
                 DrawRectangle(j * tile_size + offset_w, i * tile_size + offset_h, tile_size, tile_size, bg_color);
             }
         }
     }
     DrawLines(tile_size, offset_w, offset_h, line_color);
+}
+
+int TileHoverY()
+{
+    return floor((float)(GetMouseY() - map_offset_h) / TILE_SIZE);
+}
+
+int TileHoverX()
+{
+    return floor((float)(GetMouseX() - map_offset_w) / TILE_SIZE);
+}
+
+bool MouseInMap()
+{
+    if (TileHoverX() >= 0 && TileHoverX() < map_w && TileHoverY() >= 0 && TileHoverY() < map_h)
+        return true;
+    return false;
+}
+
+void MouseHover(){
+    DrawRectangle(TileHoverX()*TILE_SIZE + map_offset_w,TileHoverY()*TILE_SIZE+map_offset_h,TILE_SIZE,TILE_SIZE,tile_hover);
 }
