@@ -54,6 +54,14 @@ int main()
             DrawMap(TILE_SIZE, map_offset_w, map_offset_h, wall_color, bg_map, map_line_color);
             if (MouseInMap())
             {
+                if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && NotPlayerAndBorder(player1.pos))
+                {
+                    world_map[TileHoverY()][TileHoverX()] = ROCKY_WALL;
+                }
+                else if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT) && NotPlayerAndBorder(player1.pos))
+                {
+                    world_map[TileHoverY()][TileHoverX()] = FREE_SPACE;
+                }
                 MouseHover();
                 SetMouseCursor(MOUSE_CURSOR_POINTING_HAND);
             }

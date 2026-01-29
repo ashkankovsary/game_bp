@@ -86,3 +86,10 @@ bool MouseInMap()
 void MouseHover(){
     DrawRectangle(TileHoverX()*TILE_SIZE + map_offset_w,TileHoverY()*TILE_SIZE+map_offset_h,TILE_SIZE,TILE_SIZE,tile_hover);
 }
+
+bool NotPlayerAndBorder(Vector2 position)
+{
+    if (TileHoverX() > 0 && TileHoverX() < map_w - 1 && TileHoverY() > 0 && TileHoverY() < map_h - 1 && !(TileHoverX() == TilePlayerX(position.x) && TileHoverY() == TilePlayerY(position.y)))
+        return true;
+    return false;
+}
