@@ -22,14 +22,16 @@ typedef struct
     Vector2 plane;
 } Player;
 
-void DrawPlayer(Player player1);
-void DrawMiniPlayer(Player player1);
-Player MovementForward(Player player1, float dt);
-Player MovementBackward(Player player1, float dt);
-Player MovementRight(Player player1, float dt);
-Player MovementLeft(Player player1, float dt);
-Player MovementCounterclockWise(Player player1, float dt);
-Player MovementClockWise(Player player1, float dt);
-Player CheckWallSliding(Player player1, float new_x, float new_y);
+void DrawPlayer(Player player);
+void DrawMiniPlayer(Player player);
+int TilePlayerX(int positionX);
+int TilePlayerY(int positionY);
+Vector2 CheckWallSliding(Vector2 position, float new_x, float new_y);
+Vector2 MovementForward(Player player, float dt);
+Vector2 MovementBackward(Player player, float dt);
+Vector2 MovementRight(Player player, float dt);
+Vector2 MovementLeft(Player player, float dt);
+Player MovementCounterclockWise(Player player, float dt);
+Player MovementClockWise(Player player, float dt);  
 
 #endif

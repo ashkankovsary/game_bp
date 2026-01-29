@@ -6,7 +6,8 @@
 #define h_page 800
 #define map_w 20
 #define map_h 20
-#define space 30.0f
+
+#define text_map_and_camera CLITERAL(Color){ 50, 200, 50, 255}
 
 // map value
 #define TILE_SIZE 35
@@ -19,13 +20,17 @@
 
 // mini map value
 #define mini_tile_size 7
-#define mini_map_offset_w w_page * 0.85f
-#define mini_map_offset_h h_page * 0.05f
+#define mini_map_offset_w w_page * 0.99f - mini_tile_size * map_w
+#define mini_map_offset_h h_page * 0.02f 
 
 #define mini_wall_color CLITERAL(Color){ 80, 80, 80, 180}
 #define mini_bg_map CLITERAL(Color){ 200, 200, 200, 180}
 #define mini_map_line_color CLITERAL(Color){ 120, 120, 120, 180}
 
+typedef enum {
+    FREE_SPACE = 0,
+    ROCKY_WALL = 1,
+}BlockType;
 
 extern int world_map[map_h][map_w];
 
