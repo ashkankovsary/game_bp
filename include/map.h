@@ -42,5 +42,6 @@ int TileHoverY();
 int TileHoverX();
 bool MouseInMap();
 void MouseHover();
+bool NotPlayerAndBorder(Vector2 position);
 
 #endif
