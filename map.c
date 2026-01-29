@@ -30,9 +30,9 @@ int world_map[map_h][map_w] =
         {1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1},
         {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
 
-void WriteTextMap()
+void WriteTextMap(const char *text)
 {
-    DrawText("MAP VIWE - press M to return to camera", 10, 10, 20, GREEN);
+    DrawText(text, 10, 10, 20, text_map_and_camera);
 }
 
 void DrawLines(int tile_size, int offset_w, int offset_h, Color line_color)

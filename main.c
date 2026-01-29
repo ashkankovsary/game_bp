@@ -20,13 +20,13 @@ int main()
     {
         float dt = GetFrameTime();
         if (IsKeyDown(KEY_W))
-            player1 = MovementForward(player1, dt);
+            player1.pos = MovementForward(player1, dt);
         if (IsKeyDown(KEY_S))
-            player1 = MovementBackward(player1, dt);
+            player1.pos = MovementBackward(player1, dt);
         if (IsKeyDown(KEY_D))
-            player1 = MovementRight(player1, dt);
+            player1.pos = MovementRight(player1, dt);
         if (IsKeyDown(KEY_A))
-            player1 = MovementLeft(player1, dt);
+            player1.pos = MovementLeft(player1, dt);
         if (IsKeyDown(KEY_LEFT))
             player1 = MovementCounterclockWise(player1, dt);
         if (IsKeyDown(KEY_RIGHT))
