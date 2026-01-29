@@ -17,6 +17,7 @@
 #define wall_color CLITERAL(Color){ 80, 80, 80, 255}
 #define bg_map CLITERAL(Color){ 200, 200, 200, 255}
 #define map_line_color CLITERAL(Color){ 120, 120, 120, 255}
+#define tile_hover CLITERAL(Color){ 150, 150, 150, 100}
 
 // mini map value
 #define mini_tile_size 7
@@ -34,8 +35,12 @@ typedef enum {
 
 extern int world_map[map_h][map_w];
 
-void WriteTextMap();
+void WriteTextMap(const char *text);
 void DrawMap(int tile_size, int offset_w, int offset_h, Color wallcolor, Color bg_color, Color line_color);
 void DrawLines(int tile_size, int offset_w, int offset_h, Color line_color);
+int TileHoverY();
+int TileHoverX();
+bool MouseInMap();
+void MouseHover();
 
 #endif
