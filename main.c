@@ -39,6 +39,11 @@ int main()
             else
                 map_camera = true;
         }
+        if (IsKeyPressed(KEY_K) && !map_camera)
+            saveGame("save.bin", world_map, &player1);
+
+        if (IsKeyPressed(KEY_L) && !map_camera)
+            loadGame("save.bin", world_map, &player1);
         BeginDrawing();
         ClearBackground(WHITE);
         if (map_camera)
@@ -46,9 +51,10 @@ int main()
             Raycasting(player1);
             DrawMap(mini_tile_size, mini_map_offset_w, mini_map_offset_h, mini_wall_color, mini_bg_map, mini_map_line_color);
             DrawMiniPlayer(player1);
-            WriteTextMap("CAMERA VIWE - press M to return to map");
+            WriteTextMap("CAMERA VIWE - press M to return to map", "if you want to save or lode map, go to map page");
         }
-        else{
+        else
+        {
             ShowCursor();
             SetMouseCursor(MOUSE_CURSOR_DEFAULT);
             DrawMap(TILE_SIZE, map_offset_w, map_offset_h, wall_color, bg_map, map_line_color);
@@ -66,7 +72,7 @@ int main()
                 SetMouseCursor(MOUSE_CURSOR_POINTING_HAND);
             }
             DrawPlayer(player1);
-            WriteTextMap("MAP VIWE - press M to return to camera");
+            WriteTextMap("MAP VIWE - press M to return to camera", "Press K to save & Press L to lode");
         }
         EndDrawing();
     }
